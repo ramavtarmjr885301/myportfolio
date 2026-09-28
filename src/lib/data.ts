@@ -245,7 +245,7 @@ export const projects: Project[] = [
   {
     id: "codingwork",
     title: "Coding Work Solutions",
-    emoji: "🏢",
+    emoji: "💻",
     category: "freelance",
     status: "Live",
     description:
