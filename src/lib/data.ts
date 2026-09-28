@@ -19,7 +19,7 @@ export const profile = {
 
 export const stats = [
   { value: "2+", label: "Years" },
-  { value: "6", label: "Live Products" },
+  { value: "7", label: "Live Products" },
   { value: "2", label: "AI Projects" },
 ];
 
@@ -241,6 +241,22 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js 16", "React 19", "Tailwind CSS"],
     link: { href: "https://kkborewell.com/", label: "Visit kkborewell.com" },
+  },
+  {
+    id: "codingwork",
+    title: "Coding Work Solutions",
+    emoji: "🏢",
+    category: "freelance",
+    status: "Live",
+    description:
+      "Corporate website for a Noida-based software development and digital marketing company, presenting its services, industries served and client work.",
+    features: [
+      "Multi-page site: Home, Services, About, Clients and Contact",
+      "Dedicated landing page for each software and marketing service",
+      "SEO-ready with meta tags and Open Graph data, plus WhatsApp and call lead capture",
+    ],
+    tags: ["Company Website", "Multi-page", "SEO", "Lead Generation"],
+    link: { href: "https://www.codingwork.in/", label: "Visit codingwork.in" },
   },
   {
     id: "traqfy",
