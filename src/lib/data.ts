@@ -17,11 +17,11 @@ export const profile = {
   site: "https://ram-dev-ochre.vercel.app/",
 };
 
-export const stats = [
-  { value: "2+", label: "Years" },
-  { value: "7", label: "Live Products" },
-  { value: "2", label: "AI Projects" },
-];
+// export const stats = [
+//   { value: "2+", label: "Years" },
+//   { value: "7", label: "Live Products" },
+//   { value: "2", label: "AI Projects" },
+// ];
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -80,8 +80,20 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
+// export interface Experience {
+//   date: string;
+//   role: string;
+//   company: string;
+//   badge: string;
+//   points: string[];
+//   highlights?: { name: string; href: string; note: string }[];
+// }
+
 export interface Experience {
   date: string;
+  start: string;
+  end: string | null;
+  kind: "dev" | "teaching";
   role: string;
   company: string;
   badge: string;
@@ -92,6 +104,9 @@ export interface Experience {
 export const experience: Experience[] = [
   {
     date: "MAY 2025 — PRESENT",
+    start: "2025-05",
+    end: null,
+    kind: "dev",
     role: "Software Developer (Flutter)",
     company: "Efextra Esolutions Pvt. Ltd.",
     badge: "Current Role",
@@ -114,6 +129,7 @@ export const experience: Experience[] = [
     ],
   },
   {
+    start: "2024-08", end: "2025-01", kind: "teaching",
     date: "AUG 2024 — JAN 2025",
     role: "Computer Science Trainer",
     company: "Global Institute of Technology, Mahoba",
@@ -123,6 +139,7 @@ export const experience: Experience[] = [
     ],
   },
   {
+    start: "2023-09", end: "2024-07", kind: "teaching",
     date: "SEP 2023 — JUL 2024",
     role: "IT Trainer",
     company: "SSPEJKS, Mahoba (Under UPSDM)",
@@ -132,6 +149,7 @@ export const experience: Experience[] = [
     ],
   },
   {
+    start: "2023-02", end: "2023-08", kind: "dev",
     date: "FEB 2023 — AUG 2023",
     role: "Software Developer (Flutter)",
     company: "Insbytech Solutions Pvt. Ltd.",
@@ -351,3 +369,28 @@ export const certifications = [
 ];
 
 export const languages = ["Hindi (Native)", "English (Full Professional)"];
+
+function monthsBetween(start: string, end: string | null): number {
+  const s = new Date(`${start}-01`);
+  const e = end ? new Date(`${end}-01`) : new Date();
+  return Math.max(
+    0,
+    (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth())
+  );
+}
+
+const devMonths = experience
+  .filter((e) => e.kind === "dev")
+  .reduce((sum, e) => sum + monthsBetween(e.start, e.end), 0);
+
+const liveCount = projects.filter((p) =>
+  p.status.toLowerCase().startsWith("live")
+).length;
+
+const aiCount = projects.filter((p) => p.category === "ai").length;
+
+export const stats = [
+  { value: `${Math.round(devMonths / 12)}+`, label: "Years" },
+  { value: String(liveCount), label: "Live Products" },
+  { value: String(aiCount), label: "AI Projects" },
+];
